@@ -1,25 +1,32 @@
+import Image from "next/image";
+import Link from "next/link";
+
 export default function Navbar() {
   return (
     <>
-      <div className="container flex justify-end align-center py-30 px-10p">
+      <div alt="Nav Container" className="flex justify-end items-center py-30 px-10p bg-gray-400">
         <div className="logo mr-auto">
-          Logo
+          <Image 
+            src="/Calendar Icon.svg"
+            alt="Calendar Icon"
+            width={40}
+            height={40}
+          />
         </div>
         <div className="links-container">
           <div className="links">
             <div className="inline-block px-5">
               Home
             </div>
-            <div className="inline-block px-5">
-              About
-            </div>
-            <div className="inline-block px-5">
-              Contact
-            </div>
+            <Link className="inline-block px-5" href="/about">
+              Docs
+            </Link>
           </div>
         </div>
-        <div className="contact ml-5">
-          Sign Up
+        <div className="ml-5">
+          <button className="bg-gray-800 text-gray-300 rounded-full px-3.5 py-1.5 font-bold italic">
+            Start Studying
+          </button>
         </div>
       </div>
     </>

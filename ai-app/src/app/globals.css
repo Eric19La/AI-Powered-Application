@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 /* Targets All */
-* {
+body {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
+  background-color: rgb(229 231 235);
 }
