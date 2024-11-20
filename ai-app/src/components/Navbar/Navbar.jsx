@@ -24,9 +24,9 @@ export default function Navbar() {
           </div>
         </div>
         <div className="ml-5">
-          <button className="bg-gray-800 text-gray-300 rounded-full px-3.5 py-1.5 font-bold italic">
+          <Link className="bg-gray-800 text-gray-300 rounded-full px-3.5 py-1.5 font-bold italic" href="/study">
             Start Studying
-          </button>
+          </Link>
         </div>
       </div>
     </>
