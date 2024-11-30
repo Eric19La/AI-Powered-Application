@@ -1,0 +1,8 @@
+#Install Google APi
+npm install googleapis
+
+#Install nextauth
+npm install next-auth
+
+#Install react-textarea-autosize
+npm install react-textarea-autosize
