@@ -23,8 +23,9 @@ export default function StudyPage() {
   };
 
   return (
-    <div>
-      <div className="w-full h-full flex flex-col justify-center items-center">
+    <>
+      <div className="w-full h-full flex flex-col justify-center items-center my-5">
+        {/* Input Section */}
         <div className="w-6/12 text-center m-10">
           <label className="text-4xl font-bold text-gray-900 font-serif block m-3">
             How can I help you today?
@@ -51,11 +52,16 @@ export default function StudyPage() {
             </button>
           </div>
         </div>
+
+        {/* Output Section */}
+        {responseText && (
+          <div className="w-6/12 bg-gray-100 p-4 rounded-lg shadow-lg border border-gray-300 min-h-[100px] max-h[400px] overflow-auto">
+            <p className="whitespace-pre-wrap">
+              {responseText}
+            </p>
+          </div>
+        )}
       </div>
-      <div>
-        <h2>Generated Content:</h2>
-        <p>{responseText}</p>
-      </div>
-    </div>
+    </>
   );
 }
