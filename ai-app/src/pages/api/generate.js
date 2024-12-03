@@ -10,7 +10,7 @@ export default async function handler(req, res) {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ prompt: req.body.prompt }),
+        body: JSON.stringify(req.body),
       });
 
       // Retrieves the JSON response from the Flask server

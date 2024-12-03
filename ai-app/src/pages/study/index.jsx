@@ -5,18 +5,25 @@ import TextAreaAutosize from "react-textarea-autosize";
 export default function StudyPage() {
   const [prompt, setPrompt] = useState('');
   const [responseText, setResponseText] = useState('');
+  const [duration, setDuration] = useState('');
+  const [difficulty, setDifficulty] = useState('');
 
   const generateContent = async () => {
     try {
+      const payload = { 
+        prompt,
+        duration,
+        difficulty, 
+      };
+
       const res = await fetch('/api/generate', {
           method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ prompt }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
       });
+
       const data = await res.json();
-      setResponseText(data.response_text);
+      setResponseText(data.response_text || "No Response");
     } catch (error) {
       setResponseText('Error generating content');
     }
@@ -50,7 +57,54 @@ export default function StudyPage() {
                 height={36}
               />
             </button>
+          </div>  
+
+          <div className="w-full items-center flex justify-between">
+            {/* Duration selection */}
+            <div className="flex-1 mr-2">
+              <label className="block text-xl font-bold mb-2 text-gray-900 font-serif">
+                Select Duration:
+              </label>
+              <select
+                  className="text-gray-400 appearance-none bg-gray-300 p-3 rounded-lg w-full border-gray-400 border focus:border-gray-200 focus:outline-none focus:text-gray-600"
+                  value={duration}
+                  onChange={(e) => setDuration(e.target.value)}
+              >
+                <option value="" disabled>
+                    Choose duration
+                </option>
+                <option value="1">1 hour</option>
+                <option value="2">2 hours</option>
+                <option value="3">3 hours</option>
+                <option value="4">4 hours</option>
+                <option value="5">5 hours</option>
+                <option value="6">6 hours</option>
+                <option value="7">7 hours</option>
+                <option value="8">8 hours</option>
+              </select>
+            </div>
+
+            
+            {/* Difficulty selection */}
+            <div className="flex-1 ml-2">
+              <label className="block text-xl font-bold mb-2 text-gray-900 font-serif">
+                Select Difficulty:
+              </label>
+              <select
+                  className="text-gray-400 appearance-none bg-gray-300 p-3 rounded-lg w-full border-gray-400 border focus:border-gray-200 focus:outline-none focus:text-gray-600"
+                  value={difficulty}
+                  onChange={(e) => setDifficulty(e.target.value)}
+              >
+                <option value="" disabled>
+                  Choose difficulty
+                </option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+              </select>
+            </div>
           </div>
+
         </div>
 
         {/* Output Section */}
