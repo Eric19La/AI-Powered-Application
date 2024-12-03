@@ -31,7 +31,7 @@ export default function StudyPage() {
 
   return (
     <>
-      <div className="w-full h-full flex flex-col justify-center items-center my-5">
+      <div className="w-full h-full flex flex-col justify-center items-center my-5 scroll-smooth overflow-x-hidden">
         {/* Input Section */}
         <div className="w-6/12 text-center m-10">
           <label className="text-4xl font-bold text-gray-900 font-serif block m-3">
@@ -40,7 +40,7 @@ export default function StudyPage() {
           <div className="relative pb-12 flex rounded-lg">
             <TextAreaAutosize
               className="appearance-none bg-gray-300 p-3 rounded-lg w-full border-gray-400 border focus:border-gray-200 focus:outline-none" 
-              placeholder="Enter your prompt here..."
+              placeholder="Enter the topic you wish to create a study plan for..."
               maxRows={5}
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
@@ -109,7 +109,7 @@ export default function StudyPage() {
 
         {/* Output Section */}
         {responseText && (
-          <div className="w-6/12 bg-gray-100 p-4 rounded-lg shadow-lg border border-gray-300 min-h-[100px] max-h[400px] overflow-auto">
+          <div className="w-6/12 bg-gray-100 p-4 rounded-lg shadow-lg border border-gray-300 min-h-[100px] max-h[400px] overflow-x-hidden">
             <p className="whitespace-pre-wrap">
               {responseText}
             </p>

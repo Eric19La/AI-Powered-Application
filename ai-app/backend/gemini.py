@@ -33,7 +33,6 @@ def generate():
 
   # print(f"Final Prompt Sent to Model: {prompt}")  # Debugging log
 
-
   try: 
     # Creates an instance of the gemini model
     model = gemini.GenerativeModel("gemini-1.5-flash")
