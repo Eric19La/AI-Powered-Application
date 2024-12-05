@@ -1,5 +1,5 @@
 import "./globals.css";
-import Navbar from "../components/Navbar/Navbar.jsx";
+import Navbar from "../components/Navbar.jsx";
 
 export const metadata = {
   title: "My AI-Powered App",

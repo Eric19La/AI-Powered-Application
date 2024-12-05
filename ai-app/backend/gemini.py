@@ -2,12 +2,15 @@ from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 import os
 import google.generativeai as gemini
+from flask_cors import CORS
 
 # Load the environment variables from the .env file
 load_dotenv()
 
 # Initialize the Flask application
 app = Flask(__name__)
+
+CORS(app)  # Enable CORS for the Flask app
 
 # Set up your API key
 gemini.configure(api_key=os.getenv("GEMINI_API_KEY"))
@@ -44,6 +47,34 @@ def generate():
     return jsonify({ 'response_text' : response.text}), 200
   except Exception as e:
     return jsonify({ 'error' : str(e) }), 500
+  
+  
+# Store scheduled events (in memory for now)
+events = []  # This should ideally be stored in a database for persistence.
+
+# Route to fetch events
+@app.route('/api/events', methods=['GET'])
+def get_events():
+  return jsonify(events)
+
+# Route to add an event
+@app.route('/api/add-event', methods=['POST'])
+def add_event():
+  # Try to add the event to the list
+  try:
+    event = request.json  # Get the event data from the request
+    # print("Received event:", event)  # Debug log
+
+    # Validate input
+    if 'title' not in event or 'date' not in event:
+      return jsonify({"error": "Invalid event data"}), 400
+
+    events.append(event)  # Append event to the in-memory list
+    return jsonify({"message": "Event added successfully"}), 201
+  except Exception as e:
+    print("Error adding event:", str(e))  # Debug log
+    return jsonify({"error": str(e)}), 500
+
 
 # Starts the flask server on PORT 5000
 if __name__ == '__main__':

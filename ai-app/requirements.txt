@@ -6,3 +6,6 @@ npm install next-auth
 
 #Install react-textarea-autosize
 npm install react-textarea-autosize
+
+#Install FullCalendar
+npm install @fullcalendar/react @fullcalendar/daygrid @fullcalendar/timegrid @fullcalendar/interaction @fullcalendar/timegrid

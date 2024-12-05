@@ -5,17 +5,17 @@ export default function Navbar() {
   return (
     <>
       <div alt="Nav Container" className="flex justify-end items-center py-30 px-10p bg-gray-400 w-screen">
-        <div className="logo mr-auto">
+        <Link href='/schedule' className="rounded-full mr-auto p-2 hover:bg-gray-300 hover:opacity-40 active:opacity-10">
           <Image 
             src="/Calendar Icon.svg"
             alt="Calendar Icon"
             width={40}
             height={40}
           />
-        </div>
+        </Link>
         <div className="links-container">
           <div className="links">
-            <Link className="inline-block px-5 text-gray-950 font-semibold font-serif text-lg hover:opacity-40 active:opacity-10" href="/">
+            <Link className="inline-block px-5 text-gray-950 font-semibold font-serif text-lg p-1 rounded-full hover:bg-gray-300 hover:opacity-40 active:opacity-10" href="/">
               Home
             </Link>
           </div>

@@ -61,23 +61,19 @@ export default function Home() {
           <br />
 
           <h3 className="px-6 text-lg text-gray-600 leading-relaxed">
-            <span className="font-bold">Techniques Used:</span>
+            <span className="font-bold">Prompt Engineering Patterns Used:</span>
             <br /> 
-            <li className="pl-6 font-semibold">Role Assignment</li>
-            <span className="pl-16 flex">While not directly assigning a "role," it implicitly positions the AI as a study planner or guide by using clear action-based language.</span>
+            <li className="pl-6 font-semibold">Iterative Refinement</li>
+            <span className="pl-16 flex">The prompt is clearly designed in multiple steps, refining the output instructions for the AI. It specifies the [topic], includes constraints for the study plan [duration] and complexity, tailored to a [difficulty] learner. <br />Iterative refinement allows the AI to provide responses that are more aligned with user expectations by breaking the task into manageable and actionable components.</span>
             <br />
-            <li className="pl-6 font-semibold">Explicit and Clear Instructions</li>
-            <span className="pl-16 flex">The prompt specifies exactly what the AI needs to do: create a personalized study plan.</span>
+            <li className="pl-6 font-semibold">Persona</li>
+            <span className="pl-16 flex">The instructions implicitly take the role of an expert educator or planner, responsible for designing a personalized study plan. The AI is "assuming the persona" of a knowledgeable assistant, delivering expertise in educational planning.</span>
             <br />
-            <li className="pl-6 font-semibold">Parameterization</li>
-            <span className="pl-16 flex">Dynamic parameters like topic, duration, and difficulty allow customization of the response based on user inputs, making it adaptable to different contexts.<br/>Example:<br />[Topic] specifies the subject. <br /> [Duration] and [Difficulty] refines the scope and complexity.</span> 
+            <li className="pl-6 font-semibold">Step-by-Step Instruction</li>
+            <span className="pl-16 flex">The prompt breaks down the task into a sequence of specific instructions.<br/>Example:<br /> 1. Creates a personalized study plan for a given topic.<br /> 2. Ensure the plan fits the given time and difficulty level.<br /> 3. Divide the time into structured sessions.<br /> 4. Include actionable tasks for each session.</span> 
             <br />
-            <li className="pl-6 font-semibold">Structured Instructions</li>
-            <span className="pl-16 flex">The instructions are divided into smaller actionable points:<br/> Define the total time for the study plan. <br/> Structure sessions with actionable tasks. <br /> Tailor complexity to match difficulty.
-            </span>
-            <br />
-            <li className="pl-6 font-semibold">Focus on Tailored Output</li>
-            <span className="pl-16 flex">Phrases like "tailored to match the specified difficulty and time" explicitly ask the model to consider the user's context and provide a customized response.</span>
+            <li className="pl-6 font-semibold">Contextual constraints</li>
+            <span className="pl-16 flex">The prompt uses explicit constraints, such as specifying the [duration] and matching the [difficulty] level. <br />Contextual constraints narrow the AI's focus, reducing ambiguity and ensuring the response aligns precisely with user expectations. This improves both accuracy and relevance.</span>
             <br />
           </h3>
         </div>
@@ -119,8 +115,8 @@ export default function Home() {
             <li className="pl-6 font-semibold">Interactive Learning Tools</li>
             <span className="pl-16 flex">The app provides hands-on support with tutorials, exercises, and guided instructions. For example, it helps users debug Python code or follow a bread recipe step-by-step.</span>
             <br />
-            <li className="pl-6 font-semibold">Resource Recommendations</li>
-            <span className="pl-16 flex">Based on user progress and interests, the app dynamically suggests additional materials, such as advanced Python modules, related programming topics, or variations in recipes.</span>
+            <li className="pl-6 font-semibold">Tailored Calendar</li>
+            <span className="pl-16 flex">The calendar feature in the application enables users to interact with their study plans in an intuitive and visual manner. The calendar allows users to select specific dates. Users can choose a particular day on the calendar to view or allocate their personalized study plans.</span>
             <br />
           </h3>
           <br />

@@ -1,13 +1,19 @@
 import Image from "next/image";
 import { useState } from "react";
 import TextAreaAutosize from "react-textarea-autosize";
+import { addEvent } from "../api/events";
+import { useRouter } from "next/router";
 
 export default function StudyPage() {
-  const [prompt, setPrompt] = useState('');
-  const [responseText, setResponseText] = useState('');
-  const [duration, setDuration] = useState('');
-  const [difficulty, setDifficulty] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [prompt, setPrompt] = useState(''); // Stores the user's input
+  const [responseText, setResponseText] = useState(''); // Stores the generated content
+  const [duration, setDuration] = useState(''); // Stores the selected duration
+  const [difficulty, setDifficulty] = useState(''); // Stores the selected difficulty
+  const [loading, setLoading] = useState(false); // Stores the loading state
+
+  const [date, setDate] = useState(''); // Stores the selected date
+  // const [time, setTime] = useState(''); // Stores the selected time
+  const router = useRouter();
 
   // Function to generate content
   const generateContent = async () => {
@@ -38,6 +44,41 @@ export default function StudyPage() {
       setLoading(false);
     }
   };
+
+
+  // Function to schedule the study plan
+  const scheduleStudyPlan = async () => {
+    // If there is no date selected, show an alert
+    if (!date) {
+      alert("Please select a date before scheduling.");
+      return;
+    }
+  
+    // Prepare the payload to send to the backend
+    const payload = {
+      title: responseText || 'Generated Study Plan',
+      date,
+      // start: `${date}T${time}:00`, // Combine date and time
+    };
+  
+    // console.log("Payload being sent:", payload); // Debug log
+  
+    try {
+      const result = await addEvent(payload); // Send event to the backend
+
+      // Show an alert based on the result 
+      if (!result.error) {
+        alert("Study plan scheduled successfully!");
+      } else {
+        alert("Failed to schedule the study plan: " + result.error);
+      }
+    } catch (error) {
+      alert("An error occurred while scheduling: " + error.message);
+    }
+
+    router.push('/schedule'); // Redirect to the calendar page
+  };
+  
 
   return (
     <>
@@ -148,11 +189,33 @@ export default function StudyPage() {
 
         {/* Output Section */}
         {responseText && (
-          <div className="w-6/12 bg-gray-100 p-4 rounded-lg shadow-lg border border-gray-300 min-h-[100px] max-h[400px] overflow-x-hidden">
-            <p className="whitespace-pre-wrap">
-              {responseText}
-            </p>
-          </div>
+          <>
+            <div className="w-6/12 bg-gray-100 p-4 rounded-lg shadow-lg border border-gray-300 min-h-[100px] max-h[400px] overflow-x-hidden">
+              <p className="whitespace-pre-wrap">
+                {responseText}
+              </p>
+            </div>
+
+            {/* Schedule Your Plan */}
+            <div className="flex flex-row py-8 justify-between w-6/12">
+              <label className="text-center px-20 text-xl text-gray-900 font-serif font-semibold underlin">
+                Select Date: 
+                <input
+                  type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  className="flex rounded-full bg-gray-300 p-3 shadow-md border-0 active:border-gray-400 active:opacity-50 hover:bg-gray-400"
+                />
+              </label>
+              <button 
+                onClick={scheduleStudyPlan} 
+                disabled={!responseText || !date }
+                className="mx-20 rounded-full bg-gray-300 px-10 text-center text-xl font-semibold font-serif shadow-md hover:opacity-80 hover:bg-gray-400 active:opacity-50" 
+              >
+                Schedule This Plan
+              </button>
+            </div>
+          </>
         )}
       </div>
     </>
